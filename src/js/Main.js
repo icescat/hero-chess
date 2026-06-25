@@ -52,17 +52,7 @@ class Main {
             
             // 创建加载队列
             // 第一个参数 false = 使用标签加载（HTMLImageElement等），避免 CreateJS 的 IndexedDB 缓存机制
-            // （IndexedDB 在某些环境会触发 MANIFEST-000001 IO error，且对图片加载无性能收益）
             this._loadQueue = new createjs.LoadQueue(false);
-            
-            // 只有在有音频资源时才注册音频插件
-            const hasSound = AssetManifest.getSoundAssets().length > 0;
-            if (hasSound) {
-                this._loadQueue.installPlugin(createjs.Sound);
-                console.log('[Main] 音频插件已注册');
-            } else {
-                console.log('[Main] 没有音频资源，跳过音频插件');
-            }
             
             // 监听加载事件
             this._loadQueue.on('progress', this._onLoadProgress.bind(this));
@@ -157,16 +147,8 @@ class Main {
             type: errorInfo.type
         });
         
-        // 判断是否是音频资源
-        const isAudio = errorId.startsWith('sound_') || errorSrc.includes('.mp3') || errorSrc.includes('.wav');
-        
-        if (isAudio) {
-            console.warn(`[Main] 音频资源加载失败: ${errorId} (${errorSrc})`);
-            console.warn('[Main] 音频资源将被跳过，不影响游戏运行');
-        } else {
-            console.error(`[Main] 关键资源加载失败: ${errorId} (${errorSrc})`);
-            this._loadingText.textContent = '加载失败：' + errorId;
-        }
+        console.error(`[Main] 关键资源加载失败: ${errorId} (${errorSrc})`);
+        this._loadingText.textContent = '加载失败：' + errorId;
     }
     
     /**

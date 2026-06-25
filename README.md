@@ -310,9 +310,32 @@ python -m http.server 8000
 
 ## 📞 联系方式
 
-- 项目仓库：[GitHub](待定)
+- 项目仓库：[GitHub](https://github.com/icescat/hero-chess)
+- 在线游玩：[GitHub Pages](https://icescat.github.io/hero-chess/)
 - 游戏Wiki：[rollhero/index.html](rollhero/index.html)
 - 问题反馈：通过Issue提交
+
+---
+
+## 🚢 GitHub 部署规则
+
+**重要**：本地项目结构与 GitHub 仓库结构不同，部署时需要重新组织：
+
+| 本地路径 | GitHub 仓库路径 | 说明 |
+|----------|----------------|------|
+| `src/*` | `/`（仓库根目录） | 游戏源码提到根目录 |
+| `src/wiki/` | `/wiki/` | Wiki 百科 |
+| `rollhero/` | 不推送 | 开发用 Wiki 源文件 |
+| `SWF/` | 不推送 | 原始反编译资源 |
+| `docs/` | 不推送 | 开发文档 |
+| `.codegraph/` | 不推送 | 代码索引 |
+| `.trae/` | 不推送 | IDE 配置 |
+
+**README 区别**：
+- 本地 `README.md`：开发文档（本文件），面向开发者
+- `src/README.md`：玩家文档，面向游戏玩家，部署后成为 GitHub 仓库根 README
+
+**部署方式**：使用 `deploy` 分支通过 `git read-tree` 将 `src/` 提到根目录后 force push 到 `main`。
 
 ---
 

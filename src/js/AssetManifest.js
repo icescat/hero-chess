@@ -8,7 +8,6 @@
  * - 地图格子背景图：2-28开头的图片
  * - UI元素：数字编号的图片
  * - 精灵图：用于动画的序列帧
- * - 音频：音效和背景音乐
  */
 
 const AssetManifest = {
@@ -91,12 +90,6 @@ const AssetManifest = {
         {id: 'ui_134', src: 'assets/images/134.png'},
         {id: 'ui_139', src: 'assets/images/139.jpg'},
         {id: 'ui_142', src: 'assets/images/142.png'},
-        
-        // ===== 音频资源 =====
-        // V1.0 阶段暂时不使用音频，专注于核心游戏逻辑和视觉效果
-        // 后续版本可以根据需要添加音效和背景音乐
-        // {id: 'sound_roundover', src: 'assets/sounds/1_roundover.mp3'},
-        // {id: 'sound_a', src: 'assets/sounds/a.mp3'}
         
         // ===== 精灵图 - 滚动骰子动画 (8帧旋转) =====
         {id: 'rolling_dice_1', src: 'assets/sprites/DefineSprite_61_RollingDice/1.png'},
@@ -189,13 +182,6 @@ const AssetManifest = {
     },
     
     /**
-     * 获取所有音频资源
-     */
-    getSoundAssets() {
-        return this.manifest.filter(item => item.id.startsWith('sound_'));
-    },
-    
-    /**
      * 获取骰子动画所有帧
      */
     getDiceFrames() {
@@ -214,7 +200,6 @@ const AssetManifest = {
 AssetManifest.stats = {
     tiles: 27,      // 地图格子背景
     ui: 42,         // UI元素
-    sounds: 0,      // 音频资源（V1.0暂不使用）
     diceFrames: 24, // 骰子动画帧
     avatars: 2,     // 头像
     others: 10,     // 其他精灵图
@@ -225,4 +210,4 @@ AssetManifest.stats.total = AssetManifest.manifest.length;
 
 console.log('[AssetManifest] 资源清单已加载');
 console.log(`[AssetManifest] 资源总数: ${AssetManifest.stats.total}`);
-console.log(`[AssetManifest] 地图格子: ${AssetManifest.stats.tiles}, UI元素: ${AssetManifest.stats.ui}, 音频: ${AssetManifest.stats.sounds}`);
+console.log(`[AssetManifest] 地图格子: ${AssetManifest.stats.tiles}, UI元素: ${AssetManifest.stats.ui}`);
