@@ -1,19 +1,48 @@
 /**
  * 自动游戏AI类（单例）- V1.1.0重构版
- * 
+ *
  * 架构：
  * 1. StateEvaluator - 状态评估系统
  * 2. GoalSelector - 目标选择系统（记录AI目标，辅助决策）
  * 3. ChessAI - 决策执行层（核心：事件选择）
  * 4. AIConfig - 配置文件（可调整AI行为）
- * 
+ *
  * 设计理念：
  * - 这是大富翁式棋盘游戏，移动是随机投骰子
  * - AI重点在于事件选择（城镇、副本、竞技场等）
  * - 状态评估辅助做出更优决策
- * 
+ *
  * 重构日期：2025-12-01
  */
+
+// 防御性检查：如果 AI 依赖的类因网络问题（如 503）加载失败，使用默认实现避免崩溃
+if (typeof StateEvaluator === 'undefined') {
+    console.warn('[ChessAI] StateEvaluator 未加载，使用默认状态评估');
+    window.StateEvaluator = {
+        evaluate() {
+            return { survival: 50, combat: 50, wealth: 50, progress: 0, urgency: [], opportunities: [] };
+        },
+        getSummary() {
+            return { survival: '?', combat: '?', wealth: '?', progress: '?', urgentCount: 0, opportunityCount: 0 };
+        }
+    };
+}
+if (typeof GoalSelector === 'undefined') {
+    console.warn('[ChessAI] GoalSelector 未加载，使用默认目标选择');
+    window.GoalSelector = {
+        selectBestGoal() {
+            return { type: 'default', reason: 'GoalSelector 未加载，使用默认目标' };
+        }
+    };
+}
+if (typeof AIConfig === 'undefined') {
+    console.warn('[ChessAI] AIConfig 未加载，使用默认配置');
+    window.AIConfig = {
+        REST_CONFIG: { EMERGENCY_REST: 30, LOW_STAMINA_REST: 30, ALLOW_DEFAULT_REST: false },
+        COMBAT_CONFIG: { ARENA_EARLY_LEVEL: 16, ARENA_MID_LEVEL: 26, MIN_COMBAT_SCORE: 40, MIN_SURVIVAL_SCORE: 50 },
+        STABLE_CONFIG: { BUY_HORSE_MIN_GOLD: 2000, BUY_HORSE_MIN_LEVEL: 5, BUY_HORSE_MIN_WEALTH: 50, TRAIN_HORSE_MIN_GOLD: 3000, RACE_WHEN_POOR: true, TRAIN_PROBABILITY: 0.7 }
+    };
+}
 
 class ChessAI {
     static _instance = null;
