@@ -1,0 +1,83 @@
+[
+  {
+    "setNo": 0,
+    "stuff": 0,
+    "rare": 0
+  },
+  {
+    "setNo": 1,
+    "stuff": 6,
+    "rare": 0
+  },
+  {
+    "setNo": 2,
+    "stuff": 12,
+    "rare": 0
+  },
+  {
+    "setNo": 3,
+    "stuff": 24,
+    "rare": 6
+  },
+  {
+    "setNo": 4,
+    "stuff": 48,
+    "rare": 16
+  },
+  {
+    "setNo": 5,
+    "stuff": 96,
+    "rare": 32
+  },
+  {
+    "setNo": 6,
+    "stuff": 144,
+    "rare": 48
+  },
+  {
+    "setNo": 7,
+    "stuff": 216,
+    "rare": 72
+  },
+  {
+    "setNo": 8,
+    "stuff": 324,
+    "rare": 108
+  },
+  {
+    "setNo": 9,
+    "stuff": 486,
+    "rare": 162
+  },
+  {
+    "setNo": 10,
+    "stuff": 600,
+    "rare": 300
+  },
+  {
+    "setNo": 11,
+    "stuff": 768,
+    "rare": 384
+  },
+  {
+    "setNo": 12,
+    "stuff": 936,
+    "rare": 468
+  },
+  {
+    "setNo": 13,
+    "stuff": 1152,
+    "rare": 576
+  },
+  {
+    "setNo": 14,
+    "stuff": 1280,
+    "rare": 640
+  },
+  {
+    "setNo": 15,
+    "stuff": 1440,
+    "rare": 720
+  }
+]
+

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>勇者棋 - Hero Chess</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas" width="640" height="480"></canvas>
+        
+        <!-- 属性文本层（ChessPanel，支持HTML彩色文字和链接） -->
+        <!-- 位置计算：34(marginX) + 26(cellSize/2) + 5(padding) = 65 -->
+        <div id="chess-text-container" style="
+            position: absolute;
+            left: 65px;
+            top: 63px;
+            width: 214px;
+            height: 354px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            pointer-events: auto;
+            z-index: 9;
+            font-family: 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+            font-size: 15px;
+            line-height: 20px;
+            color: #000000;
+            padding: 8px;
+            box-sizing: border-box;
+        "></div>
+        
+        <!-- 聊天文本层（支持HTML彩色文字） -->
+        <!-- 位置计算：34(marginX) + 26(cellSize/2) + 5(padding) + 214(ChessPanel宽) + 10(间距) = 289 -->
+        <div id="chat-text-container" style="
+            position: absolute;
+            left: 289px;
+            top: 63px;
+            width: 286px;
+            height: 354px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            pointer-events: auto;
+            z-index: 9;
+            font-family: 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+            font-size: 15px;
+            line-height: 20px;
+            color: #000000;
+            padding: 8px;
+            box-sizing: border-box;
+        ">
+            <!-- 标题区域 -->
+            <div id="chat-title" style="
+                font-weight: bold;
+                font-size: 16px;
+                line-height: 22px;
+                margin-bottom: 4px;
+            "></div>
+            <!-- 普通文本区域 -->
+            <div id="chat-content"></div>
+        </div>
+        
+        <!-- 聊天链接层（内嵌选项，原版风格） -->
+        <div id="chat-link-container" style="
+            position: absolute;
+            left: 289px;
+            top: 63px;
+            width: 286px;
+            height: 354px;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 10;
+        "></div>
+        
+        <!-- 属性浮窗（天赋、遗物等详细信息） -->
+        <div id="extra-info-panel" style="
+            position: absolute;
+            display: none;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 1px solid #CCCC00;
+            color: #ffffff;
+            font-family: 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+            font-size: 15px;
+            line-height: 20px;
+            padding: 5px;
+            z-index: 100;
+            max-width: 214px;
+            max-height: 400px;
+            overflow-y: auto;
+            pointer-events: auto;
+            box-sizing: border-box;
+        "></div>
+        
+        <div id="loading-screen">
+            <div class="loading-content">
+                <h1>勇者棋</h1>
+                <div class="loading-bar">
+                    <div class="loading-progress" id="loadingProgress"></div>
+                </div>
+                <p id="loadingText">加载中...</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- GM测试面板 -->
+    <div id="gm-panel" class="gm-panel">
+        <div class="gm-header">
+            <h3>🎮 GM测试面板</h3>
+            <button id="gm-toggle" class="gm-toggle-btn">收起</button>
+        </div>
+        
+        <div id="gm-content" class="gm-content">
+            <!-- 骰子控制 -->
+            <div class="gm-section">
+                <h4>🎲 骰子控制</h4>
+                <div class="gm-buttons">
+                    <button onclick="window.gmRollDice(1)">投1点</button>
+                    <button onclick="window.gmRollDice(2)">投2点</button>
+                    <button onclick="window.gmRollDice(3)">投3点</button>
+                    <button onclick="window.gmRollDice(4)">投4点</button>
+                    <button onclick="window.gmRollDice(5)">投5点</button>
+                    <button onclick="window.gmRollDice(6)">投6点</button>
+                </div>
+            </div>
+            
+            <!-- 属性修改 -->
+            <div class="gm-section">
+                <h4>📊 属性修改</h4>
+                <div class="gm-inputs">
+                    <div class="gm-input-group">
+                        <label>等级：</label>
+                        <input type="number" id="gm-level" min="1" max="90" value="1">
+                        <button onclick="window.gmSetLevel()">设置</button>
+                    </div>
+                    <div class="gm-input-group">
+                        <label>金钱：</label>
+                        <input type="number" id="gm-gold" min="0" value="1000">
+                        <button onclick="window.gmSetGold()">设置</button>
+                    </div>
+                    <div class="gm-input-group">
+                        <label>生命：</label>
+                        <input type="number" id="gm-life" min="1" value="100">
+                        <button onclick="window.gmSetLife()">设置</button>
+                    </div>
+                    <div class="gm-input-group">
+                        <label>耐力：</label>
+                        <input type="number" id="gm-stamina" min="0" value="100">
+                        <button onclick="window.gmSetStamina()">设置</button>
+                    </div>
+                    <div class="gm-input-group">
+                        <label>材料：</label>
+                        <input type="number" id="gm-stuff" min="0" value="0">
+                        <button onclick="window.gmSetStuff()">设置</button>
+                    </div>
+                    <div class="gm-input-group">
+                        <label>稀有材料：</label>
+                        <input type="number" id="gm-rarestuff" min="0" value="0">
+                        <button onclick="window.gmSetRareStuff()">设置</button>
+                    </div>
+                    <div class="gm-input-group">
+                        <label>名声：</label>
+                        <input type="number" id="gm-fame" min="0" value="0">
+                        <button onclick="window.gmSetFame()">设置</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 快捷操作 -->
+            <div class="gm-section">
+                <h4>⚡ 快捷操作</h4>
+                <div class="gm-buttons">
+                    <button onclick="window.gmFullRestore()">完全恢复</button>
+                    <button onclick="window.gmAddGold(1000)">+1000金</button>
+                    <button onclick="window.gmAddStuff(10)">+10材料</button>
+                    <button onclick="window.gmLevelUp()">升1级</button>
+                    <button onclick="window.gmTeleport()">传送</button>
+                    <button onclick="window.gmRefreshStatus()">刷新</button>
+                </div>
+            </div>
+            
+            <!-- 信息显示 -->
+            <div class="gm-section">
+                <h4>📝 当前状态</h4>
+                <div id="gm-status" class="gm-status">
+                    <div>等级: <span id="gm-status-level">-</span></div>
+                    <div>金钱: <span id="gm-status-gold">-</span></div>
+                    <div>生命: <span id="gm-status-life">-</span></div>
+                    <div>格子: <span id="gm-status-cell">-</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CreateJS 库 (本地文件) -->
+    <script src="lib/createjs.min.js"></script>
+    
+    <!-- 游戏资源清单 -->
+    <script src="js/AssetManifest.js"></script>
+    
+    <!-- 核心常量和工具类 -->
+    <script src="js/core/GameConstants.js"></script>
+    <script src="js/utils/RandomUtils.js"></script>
+    <script src="js/utils/Logger.js"></script>
+    <script src="js/utils/AssetsManager.js"></script>
+    <script src="js/utils/SaveManager.js"></script>
+    
+    <!-- 模型类 - 基类 -->
+    <script src="js/model/IUpdatable.js"></script>
+    
+    <!-- 模型类 - 枚举和常量 -->
+    <script src="js/model/CellType.js"></script>
+    
+    <!-- 格子事件Mixins -->
+    <script src="js/model/cell-events/IslandEventMixin.js"></script>
+    
+    <!-- 模型类 - 棋盘系统 -->
+    <script src="js/model/Chesscell.js"></script>
+    <script src="js/model/Chessboard.js"></script>
+    
+    <!-- 模型类 - 棋子系统 -->
+    <script src="js/model/HeroModel.js"></script>
+    <script src="js/model/BuffNo.js"></script>
+    <script src="js/model/ChessBuff.js"></script>
+    <script src="js/model/Equips.js"></script>
+    <script src="js/model/Relic.js"></script>
+    <script src="js/model/Talent.js"></script>
+    <script src="js/model/Marriage.js"></script>
+    <script src="js/model/Quest.js"></script>
+    <script src="js/model/Mount.js"></script>
+    <script src="js/model/Follower.js"></script>
+    <script src="js/model/RunningStat.js"></script>
+    
+    <!-- AI系统（V1.1.0 - 现代化架构） -->
+    <script src="js/model/ai/AIConfig.js"></script>
+    <script src="js/model/ai/StateEvaluator.js"></script>
+    <script src="js/model/ai/GoalSelector.js"></script>
+    <script src="js/model/ChessAI.js"></script>
+    
+    <script src="js/model/LastFlag.js"></script>
+    <script src="js/model/RumorSystem.js"></script> <!-- V1.0.6: 线索系统 -->
+    
+    <!-- ChessProperty（V1.0.4 - 现代化单文件版本）-->
+    <script src="js/model/ChessProperty.js"></script>
+    <script src="js/model/Enemy.js"></script>
+    <script src="js/model/BattleManager.js"></script>
+    
+    <!-- Chess Mixins - 功能模块（Chess.js拆分） -->
+    <script src="js/model/chess-mixins/ChatMixin.js"></script>
+    <script src="js/model/chess-mixins/DeathMixin.js"></script>
+    <script src="js/model/chess-mixins/MovementMixin.js"></script>
+    <script src="js/model/chess-mixins/DungeonMixin.js"></script>
+    <script src="js/model/chess-mixins/TownEventMixin.js"></script>
+    <script src="js/model/chess-mixins/GuildMixin.js"></script>
+    <script src="js/model/chess-mixins/CampMixin.js"></script>
+    <script src="js/model/chess-mixins/StableMixin.js"></script>
+    <script src="js/model/chess-mixins/DockMixin.js"></script>
+    <script src="js/model/chess-mixins/RandomEventMixin.js"></script>
+    <script src="js/model/chess-mixins/SpecialCellMixin.js"></script>
+    <script src="js/model/chess-mixins/GameMechanicsMixin.js"></script>
+    <script src="js/model/chess-mixins/DrinkRumorMixin.js"></script> <!-- V1.0.6: 喝酒打听消息 -->
+    
+    <script src="js/model/Chess.js"></script>
+    
+    <!-- 数据管理器（必须在Game之前加载） -->
+    <script src="js/core/DataManager.js"></script>
+    
+    <!-- UI类（必须在Game.js之前加载，因为Game会引用ChatPanel等） -->
+    <script src="js/ui/RollingDice.js"></script>
+    <script src="js/ui/Dice.js"></script>
+    <script src="js/ui/ChatPanel.js"></script>
+    <script src="js/ui/OptionPanel.js"></script>
+    <script src="js/ui/ChessPanel.js"></script>
+    <script src="js/ui/DiaryPanel.js"></script>
+    <script src="js/ui/EndingPanel.js"></script>
+    <script src="js/ui/SavePanel.js"></script>
+    <script src="js/ui/BattlePanel.js"></script>
+    
+    <!-- 模型类 - 核心 -->
+    <script src="js/model/Game.js"></script>
+    
+    <!-- 系统类 -->
+    <!-- 将在后续迁移过程中逐步添加 -->
+    
+    <!-- GM测试工具 -->
+    <script src="js/utils/GMPanel.js"></script>
+    
+    <!-- 主入口 -->
+    <script src="js/Main.js"></script>
+</body>
+</html>
+

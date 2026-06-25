@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>勇者棋 Wiki - 游戏资料百科</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏导航 -->
+        <nav class="sidebar">
+            <div class="logo">
+                <h1>⚔️ 勇者棋 Wiki</h1>
+                <p class="version">V1.0.5</p>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 搜索...">
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-section">
+                    <h3>📦 道具装备</h3>
+                    <ul>
+                        <li><a href="#relics" data-page="relics">遗物（18种）</a></li>
+                        <li><a href="#equips" data-page="equips">装备</a></li>
+                        <li><a href="#mounts" data-page="mounts">马匹</a></li>
+                        <li><a href="#buffs" data-page="buffs">Buff效果</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-section">
+                    <h3>👥 角色养成</h3>
+                    <ul>
+                        <li><a href="#talents" data-page="talents">天赋（21种）</a></li>
+                        <li><a href="#skills" data-page="skills">技能</a></li>
+                        <li><a href="#followers" data-page="followers">随从（5职业）</a></li>
+                        <li><a href="#marriage" data-page="marriage">婚姻</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-section">
+                    <h3>🎲 游戏世界</h3>
+                    <ul>
+                        <li><a href="#events" data-page="events">格子事件</a></li>
+                        <li><a href="#devilland" data-page="devilland">魔王岛</a></li>
+                        <li><a href="#system" data-page="system">游戏系统</a></li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <p>勇者棋 Flash→HTML5</p>
+                <p>数据版本: 2025-11-27</p>
+            </div>
+        </nav>
+        
+        <!-- 主内容区域 -->
+        <main class="content">
+            <div id="pageContent">
+                <!-- 欢迎页 -->
+                <div id="welcome-page" class="page active">
+                    <h1>欢迎来到勇者棋 Wiki</h1>
+                    <p class="intro">这里汇集了游戏中所有的道具、装备、技能、事件等详细信息。</p>
+                    
+                    <div class="feature-cards">
+                        <div class="feature-card" data-goto="relics">
+                            <div class="feature-icon">🎁</div>
+                            <h3>遗物</h3>
+                            <p>18种永久提升能力的珍宝</p>
+                        </div>
+                        
+                        <div class="feature-card" data-goto="equips">
+                            <div class="feature-icon">⚔️</div>
+                            <h3>装备</h3>
+                            <p>武器护甲+强化系统</p>
+                        </div>
+                        
+                        <div class="feature-card" data-goto="mounts">
+                            <div class="feature-icon">🐴</div>
+                            <h3>马匹</h3>
+                            <p>坐骑+背包+成长系统</p>
+                        </div>
+                        
+                        <div class="feature-card" data-goto="talents">
+                            <div class="feature-icon">⭐</div>
+                            <h3>天赋</h3>
+                            <p>21种天赋塑造战斗风格</p>
+                        </div>
+                        
+                        <div class="feature-card" data-goto="skills">
+                            <div class="feature-icon">🎯</div>
+                            <h3>技能</h3>
+                            <p>随从战斗/被动/主动技能</p>
+                        </div>
+                        
+                        <div class="feature-card" data-goto="followers">
+                            <div class="feature-icon">👥</div>
+                            <h3>随从</h3>
+                            <p>6职业×5等级</p>
+                        </div>
+                        
+                        <div class="feature-card" data-goto="marriage">
+                            <div class="feature-icon">💍</div>
+                            <h3>婚姻</h3>
+                            <p>6种妻子+特殊技能</p>
+                        </div>
+                        
+                        <div class="feature-card" data-goto="events">
+                            <div class="feature-icon">🎲</div>
+                            <h3>格子事件</h3>
+                            <p>38格子详细事件流程</p>
+                        </div>
+                        
+                        <div class="feature-card" data-goto="devilland">
+                            <div class="feature-icon">🌋</div>
+                            <h3>魔王岛</h3>
+                            <p>高风险高回报终极挑战</p>
+                        </div>
+                    </div>
+                    
+                    <div class="changelog">
+                        <h2>📝 最新更新（V1.0.5）</h2>
+                        <ul>
+                            <li>✅ 死亡系统重构：传送回最近城镇复活，损失20%金钱+30%材料</li>
+                            <li>✅ 灵魂石改为遗物：战斗中死亡时满血复活（一次性）</li>
+                            <li>✅ 自动游戏优化：启动后立即开始，死亡自动复活</li>
+                            <li>✅ 新增行脚商人事件：路上随机购买道具</li>
+                            <li>✅ ChessProperty现代化重写：Map/Set架构，O(1)性能</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/data-loader.js"></script>
+    <script src="js/wiki-events-data.js"></script>
+    
+    <!-- 格子事件详细数据 -->
+    <script src="js/events/village.js"></script>
+    <script src="js/events/guild.js"></script>
+    <script src="js/events/camp.js"></script>
+    <script src="js/events/stable.js"></script>
+    <script src="js/events/arena.js"></script>
+    <script src="js/events/dungeon.js"></script>
+    <script src="js/events/dock.js"></script>
+    <script src="js/events/house.js"></script>
+    <script src="js/events/spring.js"></script>
+    <script src="js/events/grave.js"></script>
+    <script src="js/events/plain.js"></script>
+    <script src="js/events/forest.js"></script>
+    <script src="js/events/beach.js"></script>
+    
+    <script src="js/wiki-events-loader.js"></script>
+    <script src="js/wiki.js"></script>
+    <script src="js/wiki-events-pages.js"></script>
+</body>
+</html>
+

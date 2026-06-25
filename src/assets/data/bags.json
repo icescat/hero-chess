@@ -1,0 +1,53 @@
+{
+  "bags": [
+    {
+      "level": 1,
+      "name": "粗布包",
+      "weight": 50,
+      "upgradeCost": 0,
+      "upgradeStuff": 0,
+      "description": "用粗麻布缝制的简易背包，勉强能装些随身物品"
+    },
+    {
+      "level": 2,
+      "name": "皮革背包",
+      "weight": 100,
+      "upgradeCost": 5000,
+      "upgradeStuff": 5,
+      "description": "牛皮制成的结实背包，容量比布包大了不少"
+    },
+    {
+      "level": 3,
+      "name": "旅行背囊",
+      "weight": 200,
+      "upgradeCost": 15000,
+      "upgradeStuff": 10,
+      "description": "专为长途旅行设计的大号背囊，多层隔袋方便收纳"
+    },
+    {
+      "level": 4,
+      "name": "冒险者包",
+      "weight": 350,
+      "upgradeCost": 40000,
+      "upgradeStuff": 20,
+      "description": "资深冒险者的标配背包，坚固耐用容量惊人"
+    },
+    {
+      "level": 5,
+      "name": "魔法行囊",
+      "weight": 450,
+      "upgradeCost": 100000,
+      "upgradeStuff": 35,
+      "description": "附魔的神奇背包，内部空间比外表大得多"
+    },
+    {
+      "level": 6,
+      "name": "次元旅袋",
+      "weight": 600,
+      "upgradeCost": 250000,
+      "upgradeStuff": 50,
+      "description": "传说中的次元袋，连接异次元空间，几乎能装下任何东西"
+    }
+  ],
+  "qualityColors": ["#FFFFFF", "#FFFFFF", "#0080FF", "#00FF00", "#FFD700", "#FF8000"]
+}

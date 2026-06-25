@@ -1,0 +1,310 @@
+/**
+ * 勇者棋 - 主样式文件
+ * 固定分辨率：640x480
+ */
+
+/* 全局重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    background-color: #1a1a1a;  /* 浏览器背景保持深色 */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* 游戏容器 */
+#game-container {
+    position: relative;
+    width: 640px;
+    height: 480px;
+    background-color: #9B907E;  /* 游戏容器底色 */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* 游戏画布 */
+#gameCanvas {
+    display: block;
+    width: 640px;
+    height: 480px;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+}
+
+/* 加载屏幕 */
+#loading-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.5s ease-out;
+}
+
+#loading-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-content {
+    text-align: center;
+    color: white;
+}
+
+.loading-content h1 {
+    font-size: 48px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* 加载进度条 */
+.loading-bar {
+    width: 400px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+.loading-progress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+#loadingText {
+    font-size: 16px;
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+/* 禁用选择和拖拽 */
+#gameCanvas {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* 适配小屏幕 */
+@media (max-height: 520px) or (max-width: 680px) {
+    body {
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+    
+    #game-container {
+        transform: scale(0.9);
+        transform-origin: top center;
+    }
+}
+
+/* GM测试面板样式 */
+.gm-panel {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    width: 300px;
+    background: rgba(0, 0, 0, 0.95);
+    border: 2px solid #4CAF50;
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    font-size: 13px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: none;  /* 默认隐藏，通过控制台指令打开 */
+}
+
+.gm-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 6px 6px 0 0;
+    cursor: move;
+}
+
+.gm-header h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.gm-toggle-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.gm-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.gm-content {
+    padding: 12px;
+}
+
+.gm-content.collapsed {
+    display: none;
+}
+
+.gm-section {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gm-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.gm-section h4 {
+    margin: 0 0 8px 0;
+    color: #4CAF50;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.gm-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+}
+
+.gm-buttons button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: #fff;
+    padding: 6px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.gm-buttons button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.gm-buttons button:active {
+    transform: translateY(0);
+}
+
+.gm-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.gm-input-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.gm-input-group label {
+    min-width: 45px;
+    font-size: 11px;
+    color: #aaa;
+}
+
+.gm-input-group input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 4px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+}
+
+.gm-input-group button {
+    background: #4CAF50;
+    border: none;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.gm-input-group button:hover {
+    background: #45a049;
+}
+
+.gm-status {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.gm-status div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gm-status span {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+/* 滚动条样式 */
+.gm-panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.gm-panel::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.gm-panel::-webkit-scrollbar-thumb {
+    background: rgba(76, 175, 80, 0.5);
+    border-radius: 3px;
+}
+
+.gm-panel::-webkit-scrollbar-thumb:hover {
+    background: rgba(76, 175, 80, 0.7);
+}
+
+/* 属性面板和聊天面板链接样式 */
+#chess-text-container a,
+#chat-text-container a,
+#extra-info-panel a {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;  /* 继承父元素颜色，不使用浏览器默认链接颜色 */
+}
+

@@ -1,0 +1,248 @@
+{
+  "qualityNames": ["普通", "优秀", "精良", "史诗", "传奇"],
+  "qualityColors": ["#FFFFFF", "#0080FF", "#00FF00", "#FFD700", "#FF8000"],
+  "weapons": [
+    {
+      "setNo": 0,
+      "name": "青铜短剑",
+      "attack": 10,
+      "quality": 0,
+      "description": "新手冒险者的标配武器"
+    },
+    {
+      "setNo": 1,
+      "name": "硬铁短剑",
+      "attack": 30,
+      "quality": 0,
+      "description": "用硬铁锻造的短剑，比青铜更加锋利"
+    },
+    {
+      "setNo": 2,
+      "name": "月钢宽剑",
+      "attack": 50,
+      "quality": 0,
+      "description": "月光下锻造的宽刃剑，散发着淡淡银光"
+    },
+    {
+      "setNo": 3,
+      "name": "真银圣剑",
+      "attack": 70,
+      "quality": 1,
+      "description": "用真银打造的圣洁之剑，对邪恶生物有额外伤害"
+    },
+    {
+      "setNo": 4,
+      "name": "黑铁斩碎者",
+      "attack": 100,
+      "quality": 1,
+      "description": "黑铁锻造的重剑，能轻易斩碎敌人的护甲"
+    },
+    {
+      "setNo": 5,
+      "name": "黑色怒火",
+      "attack": 200,
+      "quality": 1,
+      "description": "燃烧着黑色火焰的魔剑，蕴含愤怒的力量"
+    },
+    {
+      "setNo": 6,
+      "name": "魔钢长剑",
+      "attack": 300,
+      "quality": 2,
+      "description": "用魔法强化的精钢打造，剑身泛着幽蓝的光芒"
+    },
+    {
+      "setNo": 7,
+      "name": "氪金圣剑",
+      "attack": 400,
+      "quality": 2,
+      "description": "传说中用氪金锻造的神圣武器，价值连城"
+    },
+    {
+      "setNo": 8,
+      "name": "萨隆邪铁之刃",
+      "attack": 500,
+      "quality": 2,
+      "description": "用萨隆矿坑的邪铁锻造，带有邪恶的诅咒之力"
+    },
+    {
+      "setNo": 9,
+      "name": "泰坦精钢毁灭者",
+      "attack": 650,
+      "quality": 3,
+      "description": "泰坦遗留的精钢巨剑，蕴含毁天灭地的力量"
+    },
+    {
+      "setNo": 10,
+      "name": "精工源质收割者",
+      "attack": 800,
+      "quality": 3,
+      "description": "用源质精心打造的死神镰刀，收割一切生命"
+    },
+    {
+      "setNo": 11,
+      "name": "幽冥锻铁斩杀者",
+      "attack": 950,
+      "quality": 3,
+      "description": "在幽冥界锻造的神兵，斩杀无数亡魂"
+    },
+    {
+      "setNo": 12,
+      "name": "精炼魂钢利刃",
+      "attack": 1100,
+      "quality": 3,
+      "description": "融合了无数灵魂的魂钢之剑，剑鸣如泣"
+    },
+    {
+      "setNo": 13,
+      "name": "龙翔剑",
+      "attack": 1300,
+      "quality": 4,
+      "description": "传说中的龙翔宝剑，蕴含神龙之力"
+    },
+    {
+      "setNo": 14,
+      "name": "大龙翔剑",
+      "attack": 1500,
+      "quality": 4,
+      "description": "龙翔剑的强化版本，神龙之力更加浓郁"
+    },
+    {
+      "setNo": 15,
+      "name": "真大龙翔剑",
+      "attack": 1700,
+      "quality": 4,
+      "description": "龙翔系列的终极形态，真正的传奇神器"
+    }
+  ],
+  "armors": [
+    {
+      "setNo": 0,
+      "name": "青铜胸甲",
+      "defense": 5,
+      "life": 100,
+      "quality": 0,
+      "description": "新手冒险者的标配护甲"
+    },
+    {
+      "setNo": 1,
+      "name": "银鳞胸甲",
+      "defense": 15,
+      "life": 300,
+      "quality": 0,
+      "description": "用银鳞打造的胸甲，防护性能不错"
+    },
+    {
+      "setNo": 2,
+      "name": "绿铁锁甲",
+      "defense": 25,
+      "life": 500,
+      "quality": 0,
+      "description": "绿铁锻造的锁子甲，轻便且坚固"
+    },
+    {
+      "setNo": 3,
+      "name": "真银胸甲",
+      "defense": 35,
+      "life": 700,
+      "quality": 1,
+      "description": "真银打造的圣洁胸甲，对邪恶有额外防护"
+    },
+    {
+      "setNo": 4,
+      "name": "黑铁板甲",
+      "defense": 50,
+      "life": 1000,
+      "quality": 1,
+      "description": "厚重的黑铁板甲，防护力极强"
+    },
+    {
+      "setNo": 5,
+      "name": "黑曜石胸甲",
+      "defense": 100,
+      "life": 2000,
+      "quality": 1,
+      "description": "用火山黑曜石打造，坚如磐石"
+    },
+    {
+      "setNo": 6,
+      "name": "魔化精金胸甲",
+      "defense": 150,
+      "life": 3000,
+      "quality": 2,
+      "description": "魔法强化的精金护甲，闪耀着魔力光芒"
+    },
+    {
+      "setNo": 7,
+      "name": "硬化氪金战甲",
+      "defense": 200,
+      "life": 4000,
+      "quality": 2,
+      "description": "经过特殊硬化处理的氪金战甲，坚不可摧"
+    },
+    {
+      "setNo": 8,
+      "name": "萨隆邪铁胸甲",
+      "defense": 250,
+      "life": 5000,
+      "quality": 2,
+      "description": "用萨隆邪铁锻造，带有邪恶的防护之力"
+    },
+    {
+      "setNo": 9,
+      "name": "泰坦神铁胸铠",
+      "defense": 325,
+      "life": 6500,
+      "quality": 3,
+      "description": "泰坦遗留的神铁护甲，蕴含神之防护"
+    },
+    {
+      "setNo": 10,
+      "name": "硬化源质胸铠",
+      "defense": 400,
+      "life": 8000,
+      "quality": 3,
+      "description": "用硬化源质打造的胸铠，近乎无敌的防御"
+    },
+    {
+      "setNo": 11,
+      "name": "幽冥掠夺者胸甲",
+      "defense": 475,
+      "life": 9500,
+      "quality": 3,
+      "description": "幽冥掠夺者的战甲，散发着死亡的气息"
+    },
+    {
+      "setNo": 12,
+      "name": "淬火魂钢胸甲",
+      "defense": 550,
+      "life": 11000,
+      "quality": 3,
+      "description": "在灵魂之火中淬炼的魂钢护甲"
+    },
+    {
+      "setNo": 13,
+      "name": "龙翔甲",
+      "defense": 650,
+      "life": 13000,
+      "quality": 4,
+      "description": "传说中的龙翔护甲，蕴含神龙之力"
+    },
+    {
+      "setNo": 14,
+      "name": "重龙翔甲",
+      "defense": 750,
+      "life": 15000,
+      "quality": 4,
+      "description": "龙翔甲的重装版本，防护更加全面"
+    },
+    {
+      "setNo": 15,
+      "name": "真重龙翔甲",
+      "defense": 850,
+      "life": 17000,
+      "quality": 4,
+      "description": "龙翔系列的终极形态，真正的传奇神甲"
+    }
+  ]
+}

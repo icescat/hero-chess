@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>聊天文字样式测试</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #2a2a2a;
+            font-family: 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+        }
+        
+        h1 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .test-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        /* 模拟游戏中聊天区域的背景 - 棋盘中心区域 */
+        .chat-box {
+            width: 286px;
+            min-height: 400px;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 15px;
+            line-height: 22px;
+            
+            /* 模拟棋盘中心的半透明效果 */
+            background: linear-gradient(135deg, 
+                rgba(139, 115, 85, 0.9) 0%, 
+                rgba(160, 140, 100, 0.85) 50%,
+                rgba(139, 115, 85, 0.9) 100%);
+            border: 2px solid #8B7355;
+            border-radius: 4px;
+        }
+        
+        .section-title {
+            color: #FFD700;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 15px 0 8px 0;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #8B7355;
+        }
+        
+        .sample {
+            margin: 6px 0;
+        }
+        
+        .section-title:first-child {
+            margin-top: 0;
+        }
+        
+        /* 颜色分组标题 */
+        h2 {
+            color: #FFD700;
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>聊天文字样式测试</h1>
+    <p style="color: #ccc; text-align: center; margin-bottom: 20px;">
+        请告诉我每个编号的效果好坏，例如："1-3好，2-1刺眼，3-4模糊"
+    </p>
+    
+    <div class="test-container">
+        <!-- 第一列：基础颜色 -->
+        <div class="chat-box">
+            <h2>1. 基础颜色（无阴影）</h2>
+            
+            <div class="section-title">黑色系</div>
+            <div class="sample"><span style="color: #000000;">1-1 纯黑色文字样例</span></div>
+            <div class="sample"><span style="color: #333333;">1-2 深灰色文字样例</span></div>
+            <div class="sample"><span style="color: #555555;">1-3 中灰色文字样例</span></div>
+            <div class="sample"><span style="color: #1a1a1a;">1-4 近黑色文字样例</span></div>
+            <div class="sample"><span style="color: #2d2d2d;">1-5 炭灰色文字样例</span></div>
+            
+            <div class="section-title">白色系</div>
+            <div class="sample"><span style="color: #FFFFFF;">1-6 纯白色文字样例</span></div>
+            <div class="sample"><span style="color: #F0F0F0;">1-7 浅灰白文字样例</span></div>
+            <div class="sample"><span style="color: #E0E0E0;">1-8 银灰色文字样例</span></div>
+            <div class="sample"><span style="color: #FFFEF0;">1-9 米白色文字样例</span></div>
+            <div class="sample"><span style="color: #FFF8DC;">1-10 玉米丝文字样例</span></div>
+            
+            <div class="section-title">绿色系（好事）</div>
+            <div class="sample"><span style="color: #00FF00;">1-11 纯绿色文字样例</span></div>
+            <div class="sample"><span style="color: #00CC00;">1-12 深绿色文字样例</span></div>
+            <div class="sample"><span style="color: #00FF88;">1-13 青绿色文字样例</span></div>
+            <div class="sample"><span style="color: #66FF66;">1-14 浅绿色文字样例</span></div>
+            <div class="sample"><span style="color: #32CD32;">1-15 酸橙绿文字样例</span></div>
+            
+            <div class="section-title">红色系（坏事）</div>
+            <div class="sample"><span style="color: #FF0000;">1-16 纯红色文字样例</span></div>
+            <div class="sample"><span style="color: #990000;">1-17 暗红色文字样例</span></div>
+            <div class="sample"><span style="color: #CC3333;">1-18 砖红色文字样例</span></div>
+            <div class="sample"><span style="color: #FF6666;">1-19 浅红色文字样例</span></div>
+            <div class="sample"><span style="color: #FF4444;">1-20 鲜红色文字样例</span></div>
+            
+            <div class="section-title">黄色系（提示）</div>
+            <div class="sample"><span style="color: #FFFF00;">1-21 纯黄色文字样例</span></div>
+            <div class="sample"><span style="color: #FFD700;">1-22 金黄色文字样例</span></div>
+            <div class="sample"><span style="color: #FFA500;">1-23 橙黄色文字样例</span></div>
+            <div class="sample"><span style="color: #FFCC00;">1-24 明黄色文字样例</span></div>
+            <div class="sample"><span style="color: #F0E68C;">1-25 卡其黄文字样例</span></div>
+        </div>
+        
+        <!-- 第二列：带阴影 -->
+        <div class="chat-box">
+            <h2>2. 带黑色阴影</h2>
+            
+            <div class="section-title">绿色+阴影</div>
+            <div class="sample"><span style="color: #00FF00; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">2-1 纯绿+强阴影样例</span></div>
+            <div class="sample"><span style="color: #00FF00; text-shadow: 1px 1px 1px rgba(0,0,0,0.5);">2-2 纯绿+弱阴影样例</span></div>
+            <div class="sample"><span style="color: #00FF88; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">2-3 青绿+强阴影样例</span></div>
+            <div class="sample"><span style="color: #66FF66; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">2-4 浅绿+强阴影样例</span></div>
+            <div class="sample"><span style="color: #00CC00; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">2-5 深绿+强阴影样例</span></div>
+            
+            <div class="section-title">红色+阴影</div>
+            <div class="sample"><span style="color: #FF0000; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">2-6 纯红+强阴影样例</span></div>
+            <div class="sample"><span style="color: #990000; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">2-7 暗红+强阴影样例</span></div>
+            <div class="sample"><span style="color: #CC3333; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">2-8 砖红+强阴影样例</span></div>
+            <div class="sample"><span style="color: #FF6666; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">2-9 浅红+强阴影样例</span></div>
+            <div class="sample"><span style="color: #FF4444; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">2-10 鲜红+强阴影样例</span></div>
+            
+            <div class="section-title">黄色+阴影</div>
+            <div class="sample"><span style="color: #FFFF00; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">2-11 纯黄+强阴影样例</span></div>
+            <div class="sample"><span style="color: #FFD700; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">2-12 金黄+强阴影样例</span></div>
+            <div class="sample"><span style="color: #FFCC00; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">2-13 明黄+强阴影样例</span></div>
+            <div class="sample"><span style="color: #FFA500; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">2-14 橙黄+强阴影样例</span></div>
+            <div class="sample"><span style="color: #F0E68C; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">2-15 卡其+强阴影样例</span></div>
+            
+            <div class="section-title">白色+阴影</div>
+            <div class="sample"><span style="color: #FFFFFF; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">2-16 纯白+强阴影样例</span></div>
+            <div class="sample"><span style="color: #FFFFFF; text-shadow: 1px 1px 1px rgba(0,0,0,0.5);">2-17 纯白+弱阴影样例</span></div>
+            <div class="sample"><span style="color: #F0F0F0; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">2-18 浅灰白+阴影样例</span></div>
+            <div class="sample"><span style="color: #E0E0E0; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">2-19 银灰+阴影样例</span></div>
+            <div class="sample"><span style="color: #FFF8DC; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">2-20 玉米丝+阴影样例</span></div>
+            
+            <div class="section-title">黑色+阴影</div>
+            <div class="sample"><span style="color: #000000; text-shadow: 1px 1px 0px rgba(255,255,255,0.5);">2-21 黑色+白阴影样例</span></div>
+            <div class="sample"><span style="color: #333333; text-shadow: 1px 1px 0px rgba(255,255,255,0.3);">2-22 深灰+白阴影样例</span></div>
+            <div class="sample"><span style="color: #000000; text-shadow: 0 0 3px rgba(255,255,255,0.5);">2-23 黑色+白光晕样例</span></div>
+            <div class="sample"><span style="color: #1a1a1a; text-shadow: 1px 1px 1px rgba(200,180,150,0.5);">2-24 黑色+米阴影样例</span></div>
+            <div class="sample"><span style="color: #2d2d2d; text-shadow: 0 0 2px rgba(255,255,255,0.4);">2-25 炭灰+白光晕样例</span></div>
+        </div>
+        
+        <!-- 第三列：粗细变化 -->
+        <div class="chat-box">
+            <h2>3. 字体粗细</h2>
+            
+            <div class="section-title">黑色粗细</div>
+            <div class="sample"><span style="color: #000000; font-weight: normal;">3-1 黑色正常粗细样例</span></div>
+            <div class="sample"><span style="color: #000000; font-weight: 500;">3-2 黑色中等粗细样例</span></div>
+            <div class="sample"><span style="color: #000000; font-weight: bold;">3-3 黑色粗体样例文字</span></div>
+            <div class="sample"><span style="color: #333333; font-weight: bold;">3-4 深灰粗体样例文字</span></div>
+            <div class="sample"><span style="color: #1a1a1a; font-weight: 600;">3-5 近黑半粗体样例</span></div>
+            
+            <div class="section-title">绿色粗细</div>
+            <div class="sample"><span style="color: #00FF00; font-weight: normal;">3-6 绿色正常粗细样例</span></div>
+            <div class="sample"><span style="color: #00FF00; font-weight: bold;">3-7 绿色粗体样例文字</span></div>
+            <div class="sample"><span style="color: #00FF88; font-weight: bold;">3-8 青绿粗体样例文字</span></div>
+            <div class="sample"><span style="color: #00CC00; font-weight: bold;">3-9 深绿粗体样例文字</span></div>
+            <div class="sample"><span style="color: #66FF66; font-weight: bold;">3-10 浅绿粗体样例</span></div>
+            
+            <div class="section-title">红色粗细</div>
+            <div class="sample"><span style="color: #FF0000; font-weight: normal;">3-11 红色正常粗细样例</span></div>
+            <div class="sample"><span style="color: #FF0000; font-weight: bold;">3-12 红色粗体样例文字</span></div>
+            <div class="sample"><span style="color: #CC3333; font-weight: bold;">3-13 砖红粗体样例文字</span></div>
+            <div class="sample"><span style="color: #990000; font-weight: bold;">3-14 暗红粗体样例文字</span></div>
+            <div class="sample"><span style="color: #FF6666; font-weight: bold;">3-15 浅红粗体样例</span></div>
+            
+            <div class="section-title">黄色粗细</div>
+            <div class="sample"><span style="color: #FFFF00; font-weight: normal;">3-16 黄色正常粗细样例</span></div>
+            <div class="sample"><span style="color: #FFFF00; font-weight: bold;">3-17 黄色粗体样例文字</span></div>
+            <div class="sample"><span style="color: #FFD700; font-weight: bold;">3-18 金黄粗体样例文字</span></div>
+            <div class="sample"><span style="color: #FFCC00; font-weight: bold;">3-19 明黄粗体样例文字</span></div>
+            <div class="sample"><span style="color: #FFA500; font-weight: bold;">3-20 橙黄粗体样例</span></div>
+            
+            <div class="section-title">白色粗细</div>
+            <div class="sample"><span style="color: #FFFFFF; font-weight: normal;">3-21 白色正常粗细样例</span></div>
+            <div class="sample"><span style="color: #FFFFFF; font-weight: bold;">3-22 白色粗体样例文字</span></div>
+            <div class="sample"><span style="color: #F0F0F0; font-weight: bold;">3-23 浅灰白粗体样例</span></div>
+            <div class="sample"><span style="color: #E0E0E0; font-weight: bold;">3-24 银灰粗体样例文字</span></div>
+            <div class="sample"><span style="color: #FFF8DC; font-weight: bold;">3-25 玉米丝粗体样例</span></div>
+        </div>
+        
+        <!-- 第四列：字号变化 -->
+        <div class="chat-box">
+            <h2>4. 字体大小</h2>
+            
+            <div class="section-title">黑色字号</div>
+            <div class="sample"><span style="color: #000000; font-size: 12px;">4-1 黑色12px样例</span></div>
+            <div class="sample"><span style="color: #000000; font-size: 13px;">4-2 黑色13px样例</span></div>
+            <div class="sample"><span style="color: #000000; font-size: 14px;">4-3 黑色14px样例</span></div>
+            <div class="sample"><span style="color: #000000; font-size: 15px;">4-4 黑色15px样例</span></div>
+            <div class="sample"><span style="color: #000000; font-size: 16px;">4-5 黑色16px样例</span></div>
+            
+            <div class="section-title">绿色字号</div>
+            <div class="sample"><span style="color: #00FF88; font-size: 13px;">4-6 绿色13px样例</span></div>
+            <div class="sample"><span style="color: #00FF88; font-size: 14px;">4-7 绿色14px样例</span></div>
+            <div class="sample"><span style="color: #00FF88; font-size: 15px;">4-8 绿色15px样例</span></div>
+            <div class="sample"><span style="color: #00FF88; font-size: 16px;">4-9 绿色16px样例</span></div>
+            <div class="sample"><span style="color: #00FF88; font-size: 17px;">4-10 绿色17px样例</span></div>
+            
+            <div class="section-title">红色字号</div>
+            <div class="sample"><span style="color: #FF4444; font-size: 13px;">4-11 红色13px样例</span></div>
+            <div class="sample"><span style="color: #FF4444; font-size: 14px;">4-12 红色14px样例</span></div>
+            <div class="sample"><span style="color: #FF4444; font-size: 15px;">4-13 红色15px样例</span></div>
+            <div class="sample"><span style="color: #FF4444; font-size: 16px;">4-14 红色16px样例</span></div>
+            <div class="sample"><span style="color: #FF4444; font-size: 17px;">4-15 红色17px样例</span></div>
+            
+            <div class="section-title">黄色字号</div>
+            <div class="sample"><span style="color: #FFD700; font-size: 13px;">4-16 金黄13px样例</span></div>
+            <div class="sample"><span style="color: #FFD700; font-size: 14px;">4-17 金黄14px样例</span></div>
+            <div class="sample"><span style="color: #FFD700; font-size: 15px;">4-18 金黄15px样例</span></div>
+            <div class="sample"><span style="color: #FFD700; font-size: 16px;">4-19 金黄16px样例</span></div>
+            <div class="sample"><span style="color: #FFD700; font-size: 17px;">4-20 金黄17px样例</span></div>
+            
+            <div class="section-title">白色字号</div>
+            <div class="sample"><span style="color: #FFFFFF; font-size: 13px;">4-21 白色13px样例</span></div>
+            <div class="sample"><span style="color: #FFFFFF; font-size: 14px;">4-22 白色14px样例</span></div>
+            <div class="sample"><span style="color: #FFFFFF; font-size: 15px;">4-23 白色15px样例</span></div>
+            <div class="sample"><span style="color: #FFFFFF; font-size: 16px;">4-24 白色16px样例</span></div>
+            <div class="sample"><span style="color: #FFFFFF; font-size: 17px;">4-25 白色17px样例</span></div>
+        </div>
+        
+        <!-- 第五列：组合效果 -->
+        <div class="chat-box">
+            <h2>5. 推荐组合</h2>
+            
+            <div class="section-title">普通文本（叙事）</div>
+            <div class="sample"><span style="color: #000000;">5-1 你大步来到了城镇</span></div>
+            <div class="sample"><span style="color: #1a1a1a;">5-2 你大步来到了城镇</span></div>
+            <div class="sample"><span style="color: #333333;">5-3 你大步来到了城镇</span></div>
+            <div class="sample"><span style="color: #2d2d2d; text-shadow: 0 0 1px rgba(255,255,255,0.3);">5-4 你大步来到了城镇</span></div>
+            <div class="sample"><span style="color: #FFF8DC;">5-5 你大步来到了城镇</span></div>
+            
+            <div class="section-title">好事（获得奖励）</div>
+            <div class="sample"><span style="color: #00FF88; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">5-6 经验+100 金钱+500</span></div>
+            <div class="sample"><span style="color: #00FF88;">5-7 经验+100 金钱+500</span></div>
+            <div class="sample"><span style="color: #66FF66; text-shadow: 1px 1px 2px rgba(0,0,0,0.6);">5-8 经验+100 金钱+500</span></div>
+            <div class="sample"><span style="color: #00CC00; font-weight: bold;">5-9 经验+100 金钱+500</span></div>
+            <div class="sample"><span style="color: #32CD32; text-shadow: 1px 1px 1px rgba(0,0,0,0.5);">5-10 经验+100 金钱+500</span></div>
+            
+            <div class="section-title">坏事（受伤/损失）</div>
+            <div class="sample"><span style="color: #FF4444; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">5-11 你受到10点伤害</span></div>
+            <div class="sample"><span style="color: #FF4444;">5-12 你受到10点伤害</span></div>
+            <div class="sample"><span style="color: #CC3333; text-shadow: 1px 1px 2px rgba(0,0,0,0.6);">5-13 你受到10点伤害</span></div>
+            <div class="sample"><span style="color: #FF6666; font-weight: bold;">5-14 你受到10点伤害</span></div>
+            <div class="sample"><span style="color: #990000; font-weight: bold; text-shadow: 0 0 2px rgba(255,100,100,0.5);">5-15 你受到10点伤害</span></div>
+            
+            <div class="section-title">提示（可点击）</div>
+            <div class="sample"><span style="color: #FFD700; cursor: pointer;">5-16 [点击查看详情]</span></div>
+            <div class="sample"><span style="color: #FFCC00; cursor: pointer; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">5-17 [点击查看详情]</span></div>
+            <div class="sample"><span style="color: #FFA500; cursor: pointer;">5-18 [点击查看详情]</span></div>
+            <div class="sample"><span style="color: #FFFF00; cursor: pointer; text-shadow: 1px 1px 1px rgba(0,0,0,0.5);">5-19 [点击查看详情]</span></div>
+            <div class="sample"><span style="color: #F0E68C; cursor: pointer; font-weight: bold;">5-20 [点击查看详情]</span></div>
+            
+            <div class="section-title">任务完成</div>
+            <div class="sample"><span style="color: #00FF88; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">5-21 委托【送信】顺利完成</span></div>
+            <div class="sample"><span style="color: #00FF88; font-weight: bold;">5-22 委托【送信】顺利完成</span></div>
+            <div class="sample"><span style="color: #66FF66; font-weight: bold; text-shadow: 1px 1px 1px rgba(0,0,0,0.5);">5-23 委托【送信】顺利完成</span></div>
+            <div class="sample"><span style="color: #FFD700; font-weight: bold;">5-24 委托【送信】顺利完成</span></div>
+            <div class="sample"><span style="color: #FFCC00; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">5-25 委托【送信】顺利完成</span></div>
+        </div>
+        
+        <!-- 第六列：当前游戏使用的样式 -->
+        <div class="chat-box">
+            <h2>6. 当前游戏样式</h2>
+            
+            <div class="section-title">目前使用的颜色</div>
+            <div class="sample"><span style="color: #000000;">6-1 普通文本 #000000</span></div>
+            <div class="sample"><span style="color: #00FF00; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">6-2 绿色好事 #00FF00</span></div>
+            <div class="sample"><span style="color: #990000; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">6-3 红色坏事 #990000</span></div>
+            <div class="sample"><span style="color: #FFFF00; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">6-4 黄色提示 #FFFF00</span></div>
+            <div class="sample"><span style="color: #00ff88; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">6-5 青绿任务 #00ff88</span></div>
+            
+            <div class="section-title">其他特殊样式</div>
+            <div class="sample"><span style="font-weight: bold; font-size: 16px;">6-6 地点标题（粗体16px）</span></div>
+            <div class="sample"><span style="color: #FF0000;">6-7 复活链接 #FF0000</span></div>
+            <div class="sample"><span style="color: #FFFFFF;">6-8 菜单选项 #FFFFFF</span></div>
+            
+            <div class="section-title">模拟实际场景</div>
+            <div class="sample" style="font-weight: bold; font-size: 16px;">你大步流星来到了【城镇】</div>
+            <div class="sample">这里是冒险者的天堂，商店、酒馆、铁匠铺一应俱全</div>
+            <div class="sample"><span style="color: #00FF00; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">经验+50 金钱+100</span></div>
+            <div class="sample"><span style="color: #990000; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">你受到15点伤害</span></div>
+            <div class="sample"><span style="color: #FFFF00; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">点击查看战斗统计</span></div>
+            <div class="sample"><span style="color: #00ff88; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">委托【送公文】顺利完成</span></div>
+        </div>
+    </div>
+    
+    <div style="margin-top: 30px; padding: 20px; background: #333; color: #fff; border-radius: 8px; max-width: 900px; margin-left: auto; margin-right: auto;">
+        <h3 style="color: #FFD700; margin-top: 0;">颜色用途说明</h3>
+        <ul style="line-height: 1.8;">
+            <li><strong>普通文本</strong>：叙事描述、地点介绍、对话内容</li>
+            <li><strong>绿色</strong>：好事 - 获得经验、金钱、物品、任务完成</li>
+            <li><strong>红色</strong>：坏事 - 受伤、损失、死亡、任务失败</li>
+            <li><strong>黄色</strong>：提示 - 可点击链接、重要信息、特殊事件</li>
+            <li><strong>白色</strong>：菜单选项按钮</li>
+        </ul>
+        <h3 style="color: #FFD700;">反馈格式示例</h3>
+        <p>请告诉我哪些效果好、哪些效果差，例如：</p>
+        <ul>
+            <li>"1-13青绿色好，比1-11纯绿色柔和"</li>
+            <li>"2-7暗红太暗看不清，换成2-10鲜红"</li>
+            <li>"5-6组合效果最好，用于好事"</li>
+        </ul>
+    </div>
+</body>
+</html>
+
+
+
+

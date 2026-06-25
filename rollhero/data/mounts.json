@@ -1,0 +1,88 @@
+{
+  "baseMounts": [
+    {
+      "mountNo": 1,
+      "name": "普通的马",
+      "attack": 30,
+      "weight": 50,
+      "staConsumeReduce": 1,
+      "growrate": 0.8,
+      "description": "毛色杂乱的普通马匹，虽不起眼但任劳任怨"
+    },
+    {
+      "mountNo": 2,
+      "name": "优秀的马",
+      "attack": 50,
+      "weight": 100,
+      "staConsumeReduce": 1,
+      "growrate": 0.7,
+      "description": "体格健壮的良马，棕色皮毛油光发亮"
+    },
+    {
+      "mountNo": 3,
+      "name": "出众的马",
+      "attack": 70,
+      "weight": 150,
+      "staConsumeReduce": 2,
+      "growrate": 0.6,
+      "description": "身形矫健的骏马，白色鬃毛随风飘扬"
+    },
+    {
+      "mountNo": 4,
+      "name": "卓越的马",
+      "attack": 90,
+      "weight": 200,
+      "staConsumeReduce": 2,
+      "growrate": 0.5,
+      "description": "血统优良的战马，漆黑如墨威风凛凛"
+    },
+    {
+      "mountNo": 5,
+      "name": "完美的马",
+      "attack": 110,
+      "weight": 250,
+      "staConsumeReduce": 3,
+      "growrate": 0.4,
+      "description": "万里挑一的神驹，金色皮毛闪耀着光芒"
+    },
+    {
+      "mountNo": 16,
+      "name": "幽冥战马",
+      "attack": 210,
+      "weight": 350,
+      "staConsumeReduce": 4,
+      "growrate": 0.2,
+      "isUnique": true,
+      "canWaterRun": true,
+      "description": "来自幽冥界的传说战马，通体漆黑散发着幽蓝光芒，可踏水而行"
+    }
+  ],
+  "advancedMounts": {
+    "perfectHorse": {
+      "baseNo": 5,
+      "maxNo": 15,
+      "baseName": "完美的马",
+      "finalName": "完美的马终代",
+      "baseAttack": 110,
+      "attackPerGen": 10,
+      "baseWeight": 250,
+      "weightPerGen": 25,
+      "staConsumeReduce": 3,
+      "growrate": 0.3,
+      "description": "经过多代培育的完美血统，金色光芒愈发耀眼"
+    },
+    "netherSteed": {
+      "baseNo": 16,
+      "baseName": "幽冥战马",
+      "baseAttack": 210,
+      "attackPerGen": 10,
+      "baseWeight": 350,
+      "weightPerGen": 25,
+      "staConsumeReduce": 4,
+      "growrate": 0.1,
+      "isUnique": true,
+      "canWaterRun": true,
+      "description": "幽冥界的至高战马，暗黑光芒吞噬一切"
+    }
+  }
+}
