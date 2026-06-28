@@ -234,16 +234,16 @@ class StateEvaluator {
         }
         
         // 可学习天赋
-        if (chess.canLearnTalent && chess.canLearnTalent()) {
+        if (chess._canLearnTalent && chess._canLearnTalent()) {
             opportunities.push({
                 type: 'CAN_LEARN_TALENT',
                 value: 85,
                 message: '可学习新天赋'
             });
         }
-        
-        // 名声提升（可捐赠换奖励）
-        if (prop.fameRankChanged) {
+
+        // 名声较高（可捐赠换奖励）—— fameRankChanged 字段不存在，改用 fame 阈值判断
+        if (prop.fame >= 500) {
             opportunities.push({
                 type: 'FAME_RANK_UP',
                 value: 60,
