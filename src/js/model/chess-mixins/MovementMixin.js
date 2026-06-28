@@ -541,7 +541,7 @@ const MovementMixin = {
         
         if (item === 'soulstone') {
             // 灵魂石 - 遗物（一次性）
-            const relic = Relic.getInstance().getRelicByNo(18);
+            const relic = Relic.getInstance().getRelicByNo(Relic.SOUL_STONE_NO);
             if (relic && this.prop.addRelic(relic)) {
                 this.addChat(`你跟他买了【灵魂石】，金钱-3000`);
                 this.prop.reduceGold(3000);

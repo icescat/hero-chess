@@ -518,7 +518,10 @@ class ChessAI {
         }
         
         // 2. 没有随从：根据金钱和等级决定是否雇佣
-        const recruitFee = 2000 + 1000;  // 基础费用2000 + rank*1000，假设平均rank=1
+        // 随从雇佣费用估算：基础费用2000 + rank*1000
+        // 注：此处假设平均 rank=1（费用3000）。实际费用随 rank 浮动，AI 决策可能不精确。
+        // 若需精确计算，可调用 Follower.getRecruitFee(rank)（如该方法存在）
+        const recruitFee = 2000 + 1000;
         
         // 前期（1-5级）金钱紧张，不雇佣
         if (chess.prop.level < 6) {
