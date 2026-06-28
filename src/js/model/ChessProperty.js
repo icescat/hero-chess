@@ -2561,11 +2561,21 @@ class ChessProperty {
             }
         }
         
-        // 遗物（从数组恢复到Set）
+        // 遗物（从数组恢复，并通过 addRelic 重新应用即时效果）
         this._relics.clear();
+        this._staConsume = GameConstants.STAMINA_CONSUME_BASE;  // 重置耐力消耗（遗物1会重新减）
+        this._maxWeight = GameConstants.MAX_WEIGHT;  // 重置负重（遗物2会重新加）
+        this._forgeBonus = 0;            // 重置锻造加成
         if (record.relics && Array.isArray(record.relics)) {
+            const relicInstance = Relic.getInstance();
             for (const relicNo of record.relics) {
-                this._relics.add(relicNo);
+                const relic = relicInstance.getRelicByNo(relicNo);
+                if (relic) {
+                    this.addRelic(relic);  // addRelic 内部会 _relics.add + 应用效果
+                } else {
+                    this._relics.add(relicNo);  // 兜底：找不到遗物数据时仅加入 Set
+                    console.warn(`[ChessProperty] 读档：未找到遗物 No.${relicNo}，仅加入集合未应用效果`);
+                }
             }
         }
         

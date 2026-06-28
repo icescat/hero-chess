@@ -564,7 +564,8 @@ class Chess {
             if (this.runningStat.fairylandCount >= 3) {
                 const weightGain = Math.floor(this.runningStat.fairylandCount / 3) * 10;
                 this.addGreenChat(`经常呼吸鲜气改善了你的体质，负重+${weightGain}`);
-                this.prop.maxWeight += weightGain;
+                this.prop._maxWeight += weightGain;
+                this.prop._recalculateAttributes();
                 this.runningStat.fairylandCount = 0;
             }
             
@@ -583,7 +584,8 @@ class Chess {
             if (this.runningStat.devillandCount >= 3) {
                 const atkGain = Math.floor(this.runningStat.devillandCount / 3) * 10;
                 this.addGreenChat(`经常服用魔粪增强了你的力量，攻击+${atkGain}`);
-                this.prop.baseAttack += atkGain;
+                this.prop._baseAttack += atkGain;
+                this.prop._recalculateAttributes();
                 this.runningStat.devillandCount = 0;
             }
             

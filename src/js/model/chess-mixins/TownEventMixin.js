@@ -193,10 +193,12 @@ const TownEventMixin = {
             
             if (reduceType === 2) {
                 message += '攻击-10';
-                this.prop.attack = Math.max(0, this.prop.attack - 10);
+                this.prop._baseAttack = Math.max(0, this.prop._baseAttack - 10);
+                this.prop._recalculateAttributes();
             } else if (reduceType === 1) {
                 message += '防御-5';
-                this.prop.defense = Math.max(0, this.prop.defense - 5);
+                this.prop._baseDefense = Math.max(0, this.prop._baseDefense - 5);
+                this.prop._recalculateAttributes();
             } else {
                 message += '生命-100';
                 this.prop.curLife = Math.max(1, this.prop.curLife - 100);
