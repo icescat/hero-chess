@@ -62,7 +62,6 @@ class ChessProperty {
         this._staConsume = GameConstants.STAMINA_CONSUME_BASE;
         this._actualStaConsume = GameConstants.STAMINA_CONSUME_BASE;
         this._walkStaReduce = 0;  // 步行耐力减免（天赋15）
-        this._rideStaReduce = 0;  // 骑行耐力减免（天赋16）
         
         // 材料和负重
         this._stuff = 0;
@@ -1408,8 +1407,8 @@ class ChessProperty {
             case 15: // 神行护腿：步行耐力消耗-1
                 this._walkStaReduce = 1;
                 break;
-            case 16: // 骑术护腕：骑行耐力消耗-1
-                this._rideStaReduce = 1;
+            case 16: // 骑术护腕：全移动耐力消耗-1（V1.0.5骑行系统移除，改为泛化效果）
+                this._staConsume = Math.max(1, this._staConsume - 1);
                 break;
             case 17: // 房中术：爱情等级提升
                 if (this.chess && this.chess.upgradeLoveLevel) {
@@ -1462,8 +1461,8 @@ class ChessProperty {
                 case 15: // 神行护腿：步行耐力减免清零
                     this._walkStaReduce = 0;
                     break;
-                case 16: // 骑术护腕：骑行耐力减免清零
-                    this._rideStaReduce = 0;
+                case 16: // 骑术护腕：耐力消耗恢复（+1）
+                    this._staConsume += 1;
                     break;
             }
             
@@ -2376,7 +2375,7 @@ class ChessProperty {
             const color = relic.isLegend ? '#FF8000' : '#AA00FF';
             str += `<font color='${color}'>【${relic.name}】</font>`;
             // 效果文案（从JSON的effectText读取）
-            str += `：${relic.effectText || relic.desc || ''}<br>`;
+            str += `：${relic.effectText || relic.description || ''}<br>`;
         });
         
         return str;

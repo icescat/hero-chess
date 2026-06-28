@@ -145,6 +145,7 @@ class DataManager {
                 errors.push(`Buff[${index}] duration异常: ${buff.duration}`);
             }
             // 检查类型有效性（1=战斗属性, 2=旅行属性, 3=特殊效果, 4=虚弱等复活后状态）
+            // 注：buffNo 24 为预留编号，暂未使用。如需新增 Buff 请使用 26 起。
             if (![1, 2, 3, 4].includes(buff.type)) {
                 errors.push(`Buff[${index}] type异常: ${buff.type}`);
             }

@@ -166,7 +166,7 @@ const IslandEventMixin = {
      */
     _fairylandMaster(chess, rand) {
         if (rand > 0.8) {
-            const expGain = chess.prop.maxLevel * 40;
+            const expGain = GameConstants.MAX_LEVEL * 40;
             chess.addChat('你爬树逗猴玩时不慎坠崖，本应嗝屁了却被高人所救\n得高人传功，经验+' + expGain);
             chess.prop.addExp(expGain);
             DiaryPanel.getInstance().addDiary('你因爬树救猴而坠崖，幸得高人传功施救，实力大增');
@@ -207,7 +207,7 @@ const IslandEventMixin = {
      * 仙境 - 挑战上古巨龙
      */
     _fairylandDragon(chess) {
-        const dragon = Enemy.generateLegendDemon(chess.prop.maxLevel + 30);
+        const dragon = Enemy.generateLegendDemon(GameConstants.MAX_LEVEL + 30);
         dragon.alias = '上古巨龙';
         dragon.setAsHeroic();
         dragon.isRare = true;
@@ -464,7 +464,7 @@ const IslandEventMixin = {
      * 魔界 - 挑战恶魔王
      */
     _devillandDevilKing(chess) {
-        const devilKing = Enemy.generateLegendDemon(chess.prop.maxLevel + 30);
+        const devilKing = Enemy.generateLegendDemon(GameConstants.MAX_LEVEL + 30);
         devilKing.alias = '恶魔之王';
         devilKing.setAsHeroic();
         devilKing.isRare = true;
