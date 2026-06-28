@@ -91,7 +91,7 @@
     "name": "锻造笔记",
     "type": 1,
     "isLegend": false,
-    "effectText": "锻造成功率+10%",
+    "effectText": "锻造成功率+30%",
     "description": "前辈铁匠留下的笔记，记载着锻造的秘诀"
   },
   {
@@ -131,8 +131,8 @@
     "name": "骑术护腕",
     "type": 1,
     "isLegend": false,
-    "effectText": "骑行耐力消耗-1",
-    "description": "提升骑术的护腕，减少骑马时的耐力消耗"
+    "effectText": "全移动耐力消耗-1",
+    "description": "蕴含骑术精髓的护腕，减少所有移动方式的耐力消耗"
   },
   {
     "relicNo": 17,

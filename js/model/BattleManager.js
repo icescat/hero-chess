@@ -912,6 +912,24 @@ class BattleManager {
     }
     
     /**
+     * 保存战斗记录到存档对象（与 loadWinsRecord 对称）
+     * @param {Object} info - getChessInfo 收集的存档对象
+     */
+    checkSaveWinsRecord(info) {
+        info.winsRecord = this._stat;
+    }
+
+    /**
+     * 从存档恢复战斗记录
+     * @param {Object} record - winsRecord 数据
+     */
+    loadWinsRecord(record) {
+        if (record) {
+            this._stat = record;
+        }
+    }
+
+    /**
      * 清理资源
      */
     dispose() {

@@ -337,15 +337,16 @@ class RunningStat {
     
     // 记录所有统计数据用于存档 - AS3: recordAll()
     recordAll() {
-        return {
-            totalQuestCount: this._totalQuestCount || 0,
-            totalBattles: this._totalBattles || 0,
-            totalWins: this._totalWins || 0,
-            totalLosses: this._totalLosses || 0,
-            totalKills: this._totalKills || 0,
-            nostayRound: this._nostayRound || 0,
-            // V1.1+: 添加更多统计数据（副本、竞技场、PVP等）
-        };
+        return this.toJSON();
+    }
+
+    /**
+     * 从存档恢复统计数据（与 recordAll 对称）
+     * @param {Object} record - recordAll 返回的数据
+     */
+    loadRecord(record) {
+        if (!record) return;
+        this.fromJSON(record);
     }
 }
 

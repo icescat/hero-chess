@@ -541,7 +541,7 @@ const MovementMixin = {
         
         if (item === 'soulstone') {
             // 灵魂石 - 遗物（一次性）
-            const relic = Relic.getInstance().getRelicByNo(18);
+            const relic = Relic.getInstance().getRelicByNo(Relic.SOUL_STONE_NO);
             if (relic && this.prop.addRelic(relic)) {
                 this.addChat(`你跟他买了【灵魂石】，金钱-3000`);
                 this.prop.reduceGold(3000);
@@ -569,6 +569,24 @@ const MovementMixin = {
         return true;
     },
     
+    /**
+     * 判断是否应该坐船前往岛屿（魔王岛/仙境）
+     * 供 ChessAI 调用
+     * @returns {boolean}
+     */
+    _shouldGotoIsland() {
+        // 条件1：玩家等级足够（30级+）
+        if (this.prop.level < 30) return false;
+
+        // 条件2：有足够金钱坐船
+        if (this.prop.gold < 5000) return false;
+
+        // 条件3：状态良好（非死亡/虚弱）
+        if (this.prop.isDead || this.prop.haveBuff(BuffNo.WEAK)) return false;
+
+        return true;
+    },
+
     /**
      * 检查是否可以登陆特殊岛屿（仙人岛/魔王岛）
      * 统一管理仙人岛和魔王岛的上岛限制逻辑

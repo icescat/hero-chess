@@ -325,27 +325,25 @@ class SavePanel extends createjs.Container {
      */
     _collectGameData() {
         const data = {};
-        
+
         if (window.game && window.game._chessboard) {
             const board = window.game._chessboard;
             const chess = board._curChess;
-            
+
             // 棋盘数据
             data.round = board._round || 0;
             data.daylapse = board._daylapse || 0;
             data.yearlapse = board._yearlapse || 0;
             data.gameCleared = board._gameCleared || 0;
-            
-            // 主角数据
-            if (chess && chess.prop) {
-                data.hero = {
-                    prop: chess.prop.recordAll ? chess.prop.recordAll() : {},
-                    walkspeed: chess.walkspeed || 1,
-                    index: chess._index || 0
-                };
+
+            // 主角数据（使用 Chess.getChessInfo 完整收集）
+            if (chess && chess.getChessInfo) {
+                data.hero = chess.getChessInfo();
+                // 补充 getChessInfo 未包含的棋盘位置
+                data.hero.index = chess._index || 0;
             }
         }
-        
+
         return data;
     }
     
@@ -358,22 +356,22 @@ class SavePanel extends createjs.Container {
             console.error('[SavePanel] 游戏对象不存在');
             return;
         }
-        
+
         const board = window.game._chessboard;
         const chess = board._curChess;
-        
+
         // 恢复棋盘数据
         if (data.round !== undefined) board._round = data.round;
         if (data.daylapse !== undefined) board._daylapse = data.daylapse;
         if (data.yearlapse !== undefined) board._yearlapse = data.yearlapse;
         if (data.gameCleared !== undefined) board._gameCleared = data.gameCleared;
-        
+
         // 重新计算昼夜状态
         board._isNight = (board._round % 2) === 1;
-        
+
         // 恢复主角数据
-        if (chess && chess.prop && data.hero) {
-            // 恢复属性
+        if (chess && data.hero) {
+            // 恢复属性（loadRecord 内部会通过 addRelic 重应用遗物效果）
             if (data.hero.prop) {
                 chess.prop.loadRecord(data.hero.prop);
             }
@@ -381,21 +379,37 @@ class SavePanel extends createjs.Container {
             if (data.hero.walkspeed !== undefined) {
                 chess.walkspeed = data.hero.walkspeed;
             }
+            // 恢复天赋数据
+            if (data.hero.unlockedSkill && chess.talent && chess.talent.loadArr) {
+                chess.talent.loadArr(data.hero.unlockedSkill);
+            }
+            // 恢复统计数据
+            if (data.hero.stat && chess.runningStat && chess.runningStat.loadRecord) {
+                chess.runningStat.loadRecord(data.hero.stat);
+            }
+            // 恢复战斗记录
+            if (data.hero.winsRecord && chess.battleManager && chess.battleManager.loadWinsRecord) {
+                chess.battleManager.loadWinsRecord(data.hero.winsRecord);
+            }
+            // 恢复婚姻数据
+            if (typeof Marriage !== 'undefined' && Marriage.getInstance && Marriage.getInstance().loadRecord) {
+                Marriage.getInstance().loadRecord(data.hero);
+            }
+            // 恢复棋盘位置
+            if (data.hero.index !== undefined) {
+                chess._index = data.hero.index;
+                const cell = board.getCell(chess._index);
+                if (cell && chess.setLocation) {
+                    chess.setLocation(cell.cellName);
+                }
+            }
         }
-        
+
         // 更新UI
         if (chess && chess._panel) {
             chess._panel.updateUI();
         }
-        
-        // 刷新棋盘显示
-        if (chess && chess._index !== undefined) {
-            const cell = board.getCell(chess._index);
-            if (cell && chess.setLocation) {
-                chess.setLocation(cell.cellName);
-            }
-        }
-        
+
         console.log('[SavePanel] 读档完成');
     }
     

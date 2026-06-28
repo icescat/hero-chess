@@ -44,6 +44,7 @@ class BuffNo {
     static GOLDENDYE = 22;       // 翔色染料
     static WATER_RUN = 23;       // 漂浮雕文（踏水而行）
     static WEAK = 25;            // 虚弱（死亡后）
+    // 注：buffNo 24 为预留编号，暂未使用。如需新增 Buff 请使用 26 起。
     
     // 注：灵魂石已改为遗物（relicNo: 18），不再是buff
     

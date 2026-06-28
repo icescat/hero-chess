@@ -213,15 +213,19 @@ class GoalSelector {
     static _midGameGoal(chess, state) {
         // 优先级：副本 > 天赋 > 装备
         
-        // 优先学天赋
-        if (chess.talent && chess.talent.getTalentPoint && chess.talent.getTalentPoint() > 0) {
-            return {
-                type: GoalSelector.GOAL_TALENT,
-                priority: 85,
-                reason: '学习天赋提升能力',
-                targetCellTypes: [CellType.GUILD],
-                action: 'learn_talent'
-            };
+        // 判断是否有可学习天赋的空位（已解锁数 < 最大可解锁数）
+        if (chess.talent && chess.talent.getUnlockedNo) {
+            const unlockedCount = chess.talent.getUnlockedNo();
+            const maxUnlockable = chess.talent.maxUnlockableNo || 21;  // 默认21个天赋槽位
+            if (unlockedCount < maxUnlockable) {
+                return {
+                    type: GoalSelector.GOAL_TALENT,
+                    priority: 85,
+                    reason: '学习天赋提升能力',
+                    targetCellTypes: [CellType.GUILD],
+                    action: 'learn_talent'
+                };
+            }
         }
         
         // 刷副本提升

@@ -140,6 +140,31 @@ class Talent {
         }
         return arr;
     }
+
+    /**
+     * 从存档数组恢复天赋数据（与 getUnlockedNoArr 对称）
+     * @param {Array} arr - getUnlockedNoArr 返回的数组
+     */
+    loadArr(arr) {
+        if (!arr || !arr.length) return;
+        const targetNo = arr[0] || 0;
+        // 重置到初始状态
+        this.talents = [true];
+        this.unlockedNo = 0;
+        // 逐个解锁到目标等级（unlockTalent 会应用天赋效果）
+        for (let i = 1; i <= targetNo; i++) {
+            if (i < Talent.talentNames.length) {
+                this.unlockTalent(i);
+            }
+        }
+        // 特殊天赋
+        if (arr.indexOf(Talent.TALK) !== -1) {
+            this.unlockTalent(Talent.TALK);
+        }
+        if (arr.indexOf(Talent.MONEY_ATK) !== -1) {
+            this.unlockTalent(Talent.MONEY_ATK);
+        }
+    }
     
     /**
      * 获取天赋名称

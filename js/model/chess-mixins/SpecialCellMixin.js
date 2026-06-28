@@ -89,7 +89,7 @@ const SpecialCellMixin = {
         }
         
         // 记录是否满状态（用于判断是否给NOTIRED buff）
-        const fullStamina = this.prop.curStamina >= 100 && !this.prop.haveBuff(BuffNo.SICK);
+        const fullStamina = this.prop.curStamina >= this.prop.maxStamina && !this.prop.haveBuff(BuffNo.SICK);
         
         // 检查史莱姆袭击（mustFlag==1 强制触发，否则随机，且meetSmith==0才触发）
         if (!meetSmith && this._checkTecmoRaid(mustFlag === 1)) {

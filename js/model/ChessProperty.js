@@ -62,7 +62,6 @@ class ChessProperty {
         this._staConsume = GameConstants.STAMINA_CONSUME_BASE;
         this._actualStaConsume = GameConstants.STAMINA_CONSUME_BASE;
         this._walkStaReduce = 0;  // 步行耐力减免（天赋15）
-        this._rideStaReduce = 0;  // 骑行耐力减免（天赋16）
         
         // 材料和负重
         this._stuff = 0;
@@ -247,6 +246,24 @@ class ChessProperty {
     
     get overWeight() {
         return this._overWeight;
+    }
+
+    /** 生命值百分比（0-1），供 StateEvaluator 使用 */
+    get lifePercent() {
+        if (this.actualLife <= 0) return 0;
+        return this._curLife / this.actualLife;
+    }
+
+    /** 耐力百分比（0-1），供 StateEvaluator 使用 */
+    get staminaPercent() {
+        if (this.actualStamina <= 0) return 0;
+        return this._curStamina / this.actualStamina;
+    }
+
+    /** 负重百分比（0-1），供 StateEvaluator 使用 */
+    get weightPercent() {
+        if (this.actualWeight <= 0) return 0;
+        return this._curWeight / this.actualWeight;
     }
     
     // ========== 统一属性计算方法 ==========
@@ -1390,8 +1407,8 @@ class ChessProperty {
             case 15: // 神行护腿：步行耐力消耗-1
                 this._walkStaReduce = 1;
                 break;
-            case 16: // 骑术护腕：骑行耐力消耗-1
-                this._rideStaReduce = 1;
+            case 16: // 骑术护腕：全移动耐力消耗-1（V1.0.5骑行系统移除，改为泛化效果）
+                this._staConsume = Math.max(1, this._staConsume - 1);
                 break;
             case 17: // 房中术：爱情等级提升
                 if (this.chess && this.chess.upgradeLoveLevel) {
@@ -1444,8 +1461,8 @@ class ChessProperty {
                 case 15: // 神行护腿：步行耐力减免清零
                     this._walkStaReduce = 0;
                     break;
-                case 16: // 骑术护腕：骑行耐力减免清零
-                    this._rideStaReduce = 0;
+                case 16: // 骑术护腕：耐力消耗恢复（+1）
+                    this._staConsume += 1;
                     break;
             }
             
@@ -2358,7 +2375,7 @@ class ChessProperty {
             const color = relic.isLegend ? '#FF8000' : '#AA00FF';
             str += `<font color='${color}'>【${relic.name}】</font>`;
             // 效果文案（从JSON的effectText读取）
-            str += `：${relic.effectText || relic.desc || ''}<br>`;
+            str += `：${relic.effectText || relic.description || ''}<br>`;
         });
         
         return str;
@@ -2543,11 +2560,25 @@ class ChessProperty {
             }
         }
         
-        // 遗物（从数组恢复到Set）
+        // 遗物（从数组恢复，并通过 addRelic 重新应用即时效果）
         this._relics.clear();
+        this._staConsume = GameConstants.STAMINA_CONSUME_BASE;  // 重置耐力消耗（遗物1会重新减）
+        this._maxWeight = GameConstants.MAX_WEIGHT;  // 重置负重（遗物2会重新加）
+        this._forgeBonus = 0;            // 重置锻造加成
         if (record.relics && Array.isArray(record.relics)) {
+            const relicInstance = Relic.getInstance();
             for (const relicNo of record.relics) {
-                this._relics.add(relicNo);
+                const relic = relicInstance.getRelicByNo(relicNo);
+                if (relic) {
+                    // 临时复位 took 标志，确保 addRelic 能重应用效果（读档场景）
+                    const originalTook = relic.took;
+                    relic.took = false;
+                    this.addRelic(relic);  // addRelic 内部会 _relics.add + 应用效果
+                    relic.took = originalTook;  // 恢复原标志
+                } else {
+                    this._relics.add(relicNo);  // 兜底：找不到遗物数据时仅加入 Set
+                    console.warn(`[ChessProperty] 读档：未找到遗物 No.${relicNo}，仅加入集合未应用效果`);
+                }
             }
         }
         

@@ -115,6 +115,15 @@ class Chessboard extends IUpdatable {
     get lap() {
         return this._lap;
     }
+
+    /**
+     * 圈数别名（_lap 的语义化访问器）
+     * 供 Chess.js、ChessProperty.js、各 Mixin 通过 this.board._circleNo 访问
+     * 注意：_lap 是主字段，_circleNo 仅为兼容现有调用的别名
+     */
+    get _circleNo() {
+        return this._lap;
+    }
     
     /**
      * 初始化棋盘

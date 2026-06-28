@@ -18,7 +18,8 @@ class Relic {
     // 特殊遗物编号
     static BANDAGE = 10;        // 急救绷带
     static SMITH_NOTE = 11;     // 锻造笔记
-    
+    static SOUL_STONE_NO = 18;  // 灵魂石
+
     static _instance = null;
     
     constructor() {
