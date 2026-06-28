@@ -606,5 +606,23 @@ class Marriage {
         
         console.log('[Marriage] 婚姻数据已加载:', data);
     }
+
+    /**
+     * 保存婚姻数据到存档对象（与 loadRecord 对称）
+     * @param {Object} info - getChessInfo 收集的存档对象
+     */
+    checkSaveRecord(info) {
+        info.marriage = this.getSaveData();
+    }
+
+    /**
+     * 从主角存档恢复婚姻数据
+     * @param {Object} heroData - 主角存档对象（包含 marriage 字段）
+     */
+    loadRecord(heroData) {
+        if (heroData && heroData.marriage) {
+            this.loadData(heroData.marriage);
+        }
+    }
 }
 
