@@ -248,6 +248,24 @@ class ChessProperty {
     get overWeight() {
         return this._overWeight;
     }
+
+    /** 生命值百分比（0-1），供 StateEvaluator 使用 */
+    get lifePercent() {
+        if (this.actualLife <= 0) return 0;
+        return this._curLife / this.actualLife;
+    }
+
+    /** 耐力百分比（0-1），供 StateEvaluator 使用 */
+    get staminaPercent() {
+        if (this.actualStamina <= 0) return 0;
+        return this._curStamina / this.actualStamina;
+    }
+
+    /** 负重百分比（0-1），供 StateEvaluator 使用 */
+    get weightPercent() {
+        if (this.actualWeight <= 0) return 0;
+        return this._curWeight / this.actualWeight;
+    }
     
     // ========== 统一属性计算方法 ==========
     
