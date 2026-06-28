@@ -148,6 +148,16 @@ const StableMixin = {
     },
     
     /**
+     * 检查是否可以改良马匹品质
+     * 供 ChessAI 调用判断是否升级马匹
+     * @returns {boolean}
+     */
+    _canImproveHorse() {
+        if (!this.prop || !this.prop._mount) return false;
+        return this.prop._mount.canImprove();
+    },
+
+    /**
      * 改良马种
      */
     _improveHorse() {
