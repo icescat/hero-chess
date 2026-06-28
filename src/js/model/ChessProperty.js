@@ -2571,7 +2571,11 @@ class ChessProperty {
             for (const relicNo of record.relics) {
                 const relic = relicInstance.getRelicByNo(relicNo);
                 if (relic) {
+                    // 临时复位 took 标志，确保 addRelic 能重应用效果（读档场景）
+                    const originalTook = relic.took;
+                    relic.took = false;
                     this.addRelic(relic);  // addRelic 内部会 _relics.add + 应用效果
+                    relic.took = originalTook;  // 恢复原标志
                 } else {
                     this._relics.add(relicNo);  // 兜底：找不到遗物数据时仅加入 Set
                     console.warn(`[ChessProperty] 读档：未找到遗物 No.${relicNo}，仅加入集合未应用效果`);
