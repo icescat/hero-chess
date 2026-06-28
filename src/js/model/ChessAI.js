@@ -364,10 +364,10 @@ class ChessAI {
         
         // 进度0-1：优先投资升级
         if (progress < 2 && options.includes('invest')) {
-            if ((progress === 0 && chess.prop.gold >= chess._getHouseFee()) ||
+            if ((progress === 0 && chess.prop.gold >= 30000) ||
                 (progress === 1 && chess.prop.gold >= 20000)) {
                 console.log('[ChessAI] 家园：投资升级');
-                chess._invest();
+                chess._investHouse();
                 return;
             }
         }
@@ -377,7 +377,7 @@ class ChessAI {
         // 1. 有钱继续投资（进度<5）
         if (progress < 5 && chess.prop.gold >= 20000 && state.wealth > 60 && options.includes('invest')) {
             console.log('[ChessAI] 家园：继续投资');
-            chess._invest();
+            chess._investHouse();
             return;
         }
         
@@ -644,7 +644,7 @@ class ChessAI {
             
             if (canFight) {
                 console.log('[ChessAI] 竞技场：中期阶段，状态良好，参加竞技');
-                chess._compete();
+                chess._competeInArena();
             } else {
                 console.log('[ChessAI] 竞技场：中期阶段，状态不佳，观战');
                 chess.board.roundEnd();
@@ -663,7 +663,7 @@ class ChessAI {
             chess.board.roundEnd();
         } else {
             console.log('[ChessAI] 竞技场：后期阶段，积极参战');
-            chess._compete();
+            chess._competeInArena();
         }
     }
     
@@ -692,7 +692,7 @@ class ChessAI {
             // 检查是否满足建立条件
             if (chess.prop.gold >= 200000 && chess.prop.fame >= 1000) {
                 console.log('[ChessAI] 魔王岛：建立先遣营地');
-                chess._invest();
+                chess._cell._investDevilland(chess);
             } else {
                 console.log('[ChessAI] 魔王岛：资源不足，探索周边');
             chess.board.roundEnd();
@@ -711,7 +711,7 @@ class ChessAI {
                 chess.recruitHero();
             } else if (chess.prop.gold > 50000 && state.wealth > 60) {
                 console.log('[ChessAI] 魔王岛：帮忙建设营地');
-                chess._invest();
+                chess._cell._investDevilland(chess);
             } else {
                 console.log('[ChessAI] 魔王岛：探索周边');
             chess.board.roundEnd();
