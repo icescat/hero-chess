@@ -204,14 +204,9 @@ class ChessBuff {
         }
         
         chess.addChat(message);
-        buff.beginRound = chess.board._round + 1;
-        
-        // 添加Buff到玩家
-        chess.prop._buffs.push(buff);
-        chess.prop._recalculateAttributes();
-        
-        // 显示Buff获得提示（统一格式，getDescription已包含持续时间）
-        chess.addGreenChat(buff.getDescription());
+
+        // 使用 addBuffObj 添加Buff（会自动处理重复、重计算属性、显示消息）
+        chess.prop.addBuffObj(buff, chess.board._round + 1);
     }
     
     /**
